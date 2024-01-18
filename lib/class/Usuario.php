@@ -1,5 +1,7 @@
 <?php
 
+namespace Hoteles\Clase;
+
 class Usuario {
 
     private $id;

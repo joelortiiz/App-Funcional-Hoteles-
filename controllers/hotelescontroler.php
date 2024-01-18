@@ -1,11 +1,11 @@
 <?php
 
-    class UsuariosController {
+    class usuariosController {
     private $model;
     private $view;
 
     public function __construct() {
-        $this->model = new UsuarioModel();
+        $this->model = new HotelModel();
         $this->view = new usuariosView();
     }
 

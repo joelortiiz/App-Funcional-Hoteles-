@@ -3,7 +3,7 @@ include './controllers/usuariosController.php';
 include './lib/models/UsuarioModel.php';
 include './views/usuariosView.php';
 // Define la acción por defecto
-define('ACCION_DEFECTO', 'mostrarLogin');
+define('ACCION_DEFECTO', 'mostrarUsuarios');
 
 // Define el controlador por defecto
 define('CONTROLADOR_DEFECTO', 'usuarios');

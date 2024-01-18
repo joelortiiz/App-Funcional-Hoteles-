@@ -1,26 +1,43 @@
 <?php
 
+//namespace Hoteles\Models;
+
 //tendre que usar getPDO() para obtener la conexion a la base de datos
-include $SERVER['DOCUMENT_ROOT'] . '/hoteles/db/DB.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/hoteles/db/DB.php';
 
 /* * *******************USUARIOS********************* */
 
-class UsuarioModel extends Usuario {
+//use Hoteles\Clase\Usuario;
+
+//class UsuarioModel extends Usuario {
+class UsuarioModel  {
 
     private $bd;
     private $pdo;
+    private $id;
+    private $nombre;
+    private $contrasenia;
+    private $fecha_registro;
+    private $rol;
 
-    public function __construct($bd, $pdo, $id, $nombre, $contrasenia, $fecha_registro, $rol) {
-        parent::__construct($id, $nombre, $contrasenia, $fecha_registro, $rol);
+    public function __construct($objeto = null) {
+      //  parent::__construct($id, $nombre, $contrasenia, $fecha_registro, $rol);
         $this->bd = new DB();
         try {
             $this->pdo = $this->bd->getPDO();
-            if ($this->db->getPDO() == null) {
+            if ($this->bd->getPDO() == null) {
                 echo "Error en la conexión con la base de datos";
                 exit;
             }
         } catch (Exception $ex) {
             
+        }
+         if ($objeto) {
+            $this->id = $id;
+            $this->nombre = $nombre;
+            $this->contrasenia = $contrasenia;
+            $this->fecha_registro = $fecha_registro;
+            $this->rol = $rol;
         }
     }
 
@@ -38,6 +55,50 @@ class UsuarioModel extends Usuario {
 
     public function setPdo($pdo): void {
         $this->pdo = $pdo;
+    }
+    
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    public function getContrasenia() {
+        return $this->contrasenia;
+    }
+
+    public function getFecha_registro() {
+        return $this->fecha_registro;
+    }
+
+    public function getRol() {
+        return $this->rol;
+    }
+
+    public function setId($id): void {
+        $this->id = $id;
+    }
+
+    public function setNombre($nombre): void {
+        $this->nombre = $nombre;
+    }
+
+    public function setContrasenia($contrasenia): void {
+        $this->contrasenia = $contrasenia;
+    }
+
+    public function setFecha_registro($fecha_registro): void {
+        $this->fecha_registro = $fecha_registro;
+    }
+
+    public function setRol($rol): void {
+        $this->rol = $rol;
+    }
+
+    public function __destruct() {
+        
     }
 
     public function getUsuario($nombre) {
