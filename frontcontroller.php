@@ -1,12 +1,12 @@
 <?php
-include 'controllers/TareasController.php';
-include 'models/TareasModel.php';
-include 'views/TareasView.php';
+include './controllers/usuariosController.php';
+include './lib/models/UsuarioModel.php';
+include './views/usuariosView.php';
 // Define la acción por defecto
-define('ACCION_DEFECTO', 'listar');
+define('ACCION_DEFECTO', 'mostrarLogin');
 
 // Define el controlador por defecto
-define('CONTROLADOR_DEFECTO', 'Tareas');
+define('CONTROLADOR_DEFECTO', 'usuarios');
 
 // Comprueba la acción a realizar, que llegará en la petición.
 // Si no hay acción a realizar lanzará la acción por defecto, que es listar

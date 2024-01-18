@@ -2,5 +2,5 @@
 
 $usuario = 'root';
 $pwd = '';
-$dbname='hotel';
+$dbname='prueba-mvc';
 $host='localhost';

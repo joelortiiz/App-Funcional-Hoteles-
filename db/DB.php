@@ -5,7 +5,7 @@ class DB {
     private $pdo;
 
     public function __construct() {
-        require 'config/Config.php';
+        require '../config/Config.php';
         try {
             // Crea una instancia de PDO para conectarse a la base de datos
             $this->pdo = new PDO("mysql:host=$host;dbname=$dbname", $usuario, $pwd);

@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edit this template
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<?php
+
+// Incluye los archivos de modelo, vista y controlador
+include './lib/models/HotelModel.php.php';
+include './views/LoginView.php';
+include './controllers/LoginController.php';
+// Crea una instancia del controlador de tareas
+$tareasController = new TareasController();
+// Ejecuta la acción de listar tareas
+$tareasController->listar();
