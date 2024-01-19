@@ -18,7 +18,7 @@ class usuariosView {
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <form class="card-body p-5 text-center" method="POST" action="./home.php" >
+            <form class="card-body p-5 text-center" method="POST" action="../index.php?controller=hoteles&action=comprobarLogin" >
 
             <h3 class="mb-5">Sign in</h3>
 
@@ -47,5 +47,10 @@ class usuariosView {
     </div>
   </div>
 </section>');
+    }
+    public function comprobarLogin() {
+        
+        $_SERVER['REQUEST_METHOD'];
+        
     }
 }

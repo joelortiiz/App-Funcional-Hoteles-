@@ -25,12 +25,9 @@ class UsuarioModel  {
         $this->bd = new DB();
         try {
             $this->pdo = $this->bd->getPDO();
-            if ($this->bd->getPDO() == null) {
-                echo "Error en la conexión con la base de datos";
-                exit;
-            }
+            throw new Exception('Error en la Base de Datos');
         } catch (Exception $ex) {
-            
+                $ex->getMessage();
         }
          if ($objeto) {
             $this->id = $id;
