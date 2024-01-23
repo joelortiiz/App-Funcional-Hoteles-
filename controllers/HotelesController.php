@@ -1,15 +1,15 @@
 <?php
 
-    class usuariosController {
+ class HotelesController {
     private $model;
     private $view;
 
     public function __construct() {
         $this->model = new HotelModel();
-        $this->view = new usuariosView();
+        $this->view = new hotelesView();
     }
 
-    public function mostrarUsuarios() {
+    public function mostrarHoteles() {
         
          $this->view->mostrarFormulario();
     }

@@ -1,5 +1,5 @@
 <?php
-include './controllers/usuariosController.php';
+include './controllers/UsuariosController.php';
 include './lib/models/UsuarioModel.php';
 include './views/usuariosView.php';
 // Define la acción por defecto

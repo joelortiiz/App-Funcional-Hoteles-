@@ -2,7 +2,7 @@
 
 //namespace Hoteles\Models;
 //tendre que usar getPDO() para obtener la conexion a la base de datos
-include $_SERVER['DOCUMENT_ROOT'] . '/hoteles/db/DB.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/hoteles/db/DB.php';
 
 /* * *******************USUARIOS********************* */
 
@@ -125,7 +125,7 @@ class HotelModel {
     
         public function getHoteles($nombre) {
         try {
-            $sql = "SELECT * FROM usuarios WHERE nombre = ?";
+            $sql = "SELECT * FROM hoteles";
             $stmt = $this->db->getPDO()->prepare($sql);
             $stmt->execute([$nombre]);
 

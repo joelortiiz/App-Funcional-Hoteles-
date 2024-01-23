@@ -1,16 +1,14 @@
 <?php
 
 //namespace Hoteles\Models;
-
 //tendre que usar getPDO() para obtener la conexion a la base de datos
-include $_SERVER['DOCUMENT_ROOT'] . '/hoteles/db/DB.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/hoteles/db/DB.php';
 
-/* * *******************USUARIOS********************* */
+
 
 //use Hoteles\Clase\Usuario;
-
 //class UsuarioModel extends Usuario {
-class UsuarioModel  {
+class UsuarioModel {
 
     private $bd;
     private $pdo;
@@ -21,22 +19,18 @@ class UsuarioModel  {
     private $rol;
 
     public function __construct($objeto = null) {
-      //  parent::__construct($id, $nombre, $contrasenia, $fecha_registro, $rol);
+        //  parent::__construct($id, $nombre, $contrasenia, $fecha_registro, $rol);
         $this->bd = new DB();
-        try {
-            $this->pdo = $this->bd->getPDO();
-            throw new Exception('Error en la Base de Datos');
-        } catch (Exception $ex) {
-                $ex->getMessage();
-        }
-         if ($objeto) {
-            $this->id = $id;
-            $this->nombre = $nombre;
-            $this->contrasenia = $contrasenia;
-            $this->fecha_registro = $fecha_registro;
-            $this->rol = $rol;
-        }
+        $this->pdo = $this->bd->getPDO();
+        if($objeto){
+        $this->id = $id;
+        $this->nombre = $nombre;
+        $this->contrasenia = $contrasenia;
+        $this->fecha_registro = $fecha_registro;
+        $this->rol = $rol;
     }
+    
+        }
 
     public function getBd() {
         return $this->bd;
@@ -53,7 +47,7 @@ class UsuarioModel  {
     public function setPdo($pdo): void {
         $this->pdo = $pdo;
     }
-    
+
     public function getId() {
         return $this->id;
     }
@@ -94,20 +88,41 @@ class UsuarioModel  {
         $this->rol = $rol;
     }
 
-    public function __destruct() {
-        
-    }
-
-    public function getUsuario($nombre) {
+   
+    public function getUsuario($nombre, $password) {
         try {
-            $sql = "SELECT * FROM usuarios WHERE nombre = ?";
-            $stmt = $this->db->getPDO()->prepare($sql);
+            echo $nombre;
+            echo $password;
+            
+            $sql_pelis = "SELECT * FROM usuarios";
+            $pelis = $this->bd->getPDO()->query($sql_pelis);
+             // $actoresArrAlm = [];
+
+    foreach ($pelis as $peli => $value) {
+        // Pelicula($id, $titulo, $genero, $pais, $anyo, $cartel);
+        echo $value["id"], $value["nombre"], $value["contraseña"], $value["fecha_registro"], $value["rol"];
+        //array_push($pelisArr, $pelicula);
+        //Prueba de funcionamiento:
+        //  echo $pelicula->getTitulo();
+    }
+            
+            $password =  hash("SHA256", $password);
+            
+            echo "Contraseña: ".$password ." / Fin";
+            
+            $sql = "SELECT * from Usuarios WHERE nombre = ". $nombre ."and ' contraseña = '" . $password . "';";
+            $stmt = $this->bd->getPDO()->prepare($sql);
             $stmt->execute([$nombre]);
 
             $usuario = $stmt->fetchObject('Usuario');
+            if($usuario==null){
+                
+            throw new Exception('No existe el usuario');
+            }
+
             return $usuario; // Devuelve un objeto Usuario
             //cierro la conexion
-            $this->db->cierroBD();
+            $this->bd->cierroBD();
         } catch (Exception $ex) {
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
             return null;
