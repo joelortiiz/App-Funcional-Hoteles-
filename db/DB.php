@@ -24,5 +24,9 @@ class DB {
     public function getPDO() {
         return $this->pdo;
     }
+    
+    public function cerrarBD() {
+         $this->pdo = null;
+    }
 
 }

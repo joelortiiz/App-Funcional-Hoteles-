@@ -89,43 +89,23 @@ class UsuarioModel {
     }
 
    
-    public function getUsuario($nombre, $password) {
-        try {
-            echo $nombre;
-            echo $password;
-            
-            $sql_pelis = "SELECT * FROM usuarios";
-            $pelis = $this->bd->getPDO()->query($sql_pelis);
-             // $actoresArrAlm = [];
-
-    foreach ($pelis as $peli => $value) {
-        // Pelicula($id, $titulo, $genero, $pais, $anyo, $cartel);
-        echo $value["id"], $value["nombre"], $value["contraseña"], $value["fecha_registro"], $value["rol"];
-        //array_push($pelisArr, $pelicula);
-        //Prueba de funcionamiento:
-        //  echo $pelicula->getTitulo();
-    }
-            
-            $password =  hash("SHA256", $password);
-            
-            echo "Contraseña: ".$password ." / Fin";
-            
-            $sql = "SELECT * from Usuarios WHERE nombre = ". $nombre ."and ' contraseña = '" . $password . "';";
-            $stmt = $this->bd->getPDO()->prepare($sql);
-            $stmt->execute([$nombre]);
-
-            $usuario = $stmt->fetchObject('Usuario');
-            if($usuario==null){
-                
-            throw new Exception('No existe el usuario');
-            }
-
-            return $usuario; // Devuelve un objeto Usuario
-            //cierro la conexion
-            $this->bd->cierroBD();
-        } catch (Exception $ex) {
-            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
-            return null;
+    function comprobarUsuarioDB($user, $password) {
+        $password = hash('SHA256', $password);
+        //echo $password;
+        $sql = "SELECT * from Usuarios WHERE nombre = ? and contraseña = ?";
+        //echo '<br>' .$sql;
+        $stmt = $this->pdo->prepare($sql);
+        
+        
+        $stmt->execute(array($user, $password));
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'UsuarioModel');
+        if ($stmt) {
+            $userObject = $stmt->fetch();
+            $this->bd->cerrarBD();
+            return $userObject;
+        } else {
+            return false;
         }
-    }
+    
+}
 }

@@ -15,11 +15,38 @@ include './views/usuariosView.php';
         
          $this->view->mostrarFormulario();
     }
+    public function mostrarErrorForm() {
+        
+         $this->view->mostrarFormulario();
+    }
     // Muestra la lista de tareas
-    public function listar() {
-        // Recupera la lista de tareas del modelo
-        $tareas = $this->model->getTareas();
-        // Muestra la vista de la lista de tareas
-        $this->view->mostrarLista($tareas);
+    public function comprobarLogin() {
+
+        if (isset($_POST['usuario']) && isset($_POST['password'])) {
+            
+            $userPost = $_POST['usuario'];
+            $passPost = $_POST['password'];
+            
+            
+            $user = $this->model->comprobarUsuarioDB($userPost, $passPost);
+          
+            if ($user != false) {
+                //echo 'login correcto';
+                
+                $this->correctoLogin($user);
+                
+            } else {
+                $this->errorLogin();
+            }
+        }
+        
+    }
+    
+        function errorLogin() {
+        header('Location:' . $_SERVER['PHP_SELF'] . '?controller=usuarios&action=mostrarErrorForm&error');
+    }
+      function correctoLogin($user) {
+        $this->createSessionUser($user);
+        header('Location:' . $_SERVER['PHP_SELF'] . '?controller=Hotel&action=listHotels');
     }
 }
