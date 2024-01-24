@@ -1,9 +1,11 @@
 <?php
+include './lib/models/UsuarioModel.php';
+include './views/usuariosView.php';
 
-    class UsuariosController {
+ class UsuariosController {
     private $model;
     private $view;
-
+    
     public function __construct() {
         $this->model = new UsuarioModel();
         $this->view = new usuariosView();

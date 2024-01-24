@@ -1,7 +1,10 @@
 <?php
-include './controllers/UsuariosController.php';
-include './lib/models/UsuarioModel.php';
-include './views/usuariosView.php';
+include './controllers/usuariosController.php';
+include './controllers/HotelesController.php';
+include './controllers/ReservasController.php';
+include './controllers/HabitacionesController.php';
+
+
 // Define la acción por defecto
 define('ACCION_DEFECTO', 'mostrarUsuarios');
 
