@@ -7,6 +7,13 @@ class usuariosView {
     public function mostrarFormulario() {
    
         ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mi aplicación de hoteles</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
  <section class="vh-100" style="background-color: #508bfc;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -18,6 +25,9 @@ class usuariosView {
             <?php
             if (isset($_GET["error"])) {
                     echo "<p class='text-danger'>Datos incorrectos</p>";
+                }
+                if (isset($_GET["logout"])) {
+                    echo "<p class='text-warning'>Debes iniciar sesión !!</p>";
                 }
                 ?>
             <div class="form-outline mb-4">
@@ -45,6 +55,9 @@ class usuariosView {
     </div>
   </div>
 </section>');
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>
 
  <?php
      }

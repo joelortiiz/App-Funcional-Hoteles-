@@ -13,8 +13,15 @@ include './views/hotelesView.php';
     }
 
     public function mostrarHoteles() {
-          $hoteles = $this->model->getHoteles();
+        session_start();
+        if(!$_SESSION['user']) {
+            header('Location: ./index.php');
+        }
+        
+            $hoteles = $this->model->getHoteles();
          $this->view->mostrarHoteles($hoteles);
+        
+          
     }
    
 }

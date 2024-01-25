@@ -21,27 +21,34 @@ class HotelModel {
 
     public function getHoteles() {
         try {
-       
-        $sql = "SELECT * from hoteles";
-        
-        $hoteles = $this->pdo->prepare($sql);
-        
-        
-        $hoteles->execute();
-        $hoteles->setFetchMode(PDO::FETCH_CLASS, 'Hotel');
-         //foreach ($stmt as $value) {
-         //   $usuario = new Usuario($value['id'], $value['nombre'], $value['contraseña'], $value['fecha_registro'], $value['rol']);
-        //}
-        if ($hoteles) {
-            $userObject = $hoteles->fetch();
-            $this->bd->cerrarBD();
-            return $userObject;
-        } else {
-            throw  new Exception('El usuario no existe en la base de datos');
-            return false;
-        }
-        }
-         catch (Exception $exc) {
+
+            $sql = "SELECT * from hoteles";
+
+            $hoteles = $this->pdo->prepare($sql);
+
+            print_r("<br>");
+            print_r("<br>");
+
+            print_r("<br>");
+
+            print_r("<br>");
+
+            print_r("<br>");
+
+            $hoteles->execute();
+            $hoteles->setFetchMode(PDO::FETCH_CLASS, 'Hotel');
+            
+            if ($hoteles) {
+                $userObject = $hoteles->fetchAll();
+             //   print_r($userObject);
+              //  echo $userObject[0]->getNombre();
+                $this->bd->cerrarBD();
+                return $userObject;
+            } else {
+                throw new Exception('El usuario no existe en la base de datos');
+                return false;
+            }
+        } catch (Exception $exc) {
             echo $exc->getMessage();
         }
     }
