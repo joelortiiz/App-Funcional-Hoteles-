@@ -26,14 +26,7 @@ class HotelModel {
 
             $hoteles = $this->pdo->prepare($sql);
 
-            print_r("<br>");
-            print_r("<br>");
-
-            print_r("<br>");
-
-            print_r("<br>");
-
-            print_r("<br>");
+           
 
             $hoteles->execute();
             $hoteles->setFetchMode(PDO::FETCH_CLASS, 'Hotel');

@@ -1,13 +1,8 @@
 <?php
 
-class hotelesView {
+class habitacionesView {
 
-    public function mostrarHoteles($hoteles) {
-
-
-        foreach ($hoteles as $value) {
-            //echo $value ;
-        }
+    function mostrarHabitaciones($habitaciones) {
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -36,15 +31,7 @@ class hotelesView {
                 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
                 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-                <!-- Template Main CSS File -->
                 <link href="assets/css/style.css" rel="stylesheet">
-
-                <!-- =======================================================
-                * Template Name: Sailor
-                * Updated: Jan 09 2024 with Bootstrap v5.3.2
-                * Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
-                * Author: BootstrapMade.com
-                * License: https://bootstrapmade.com/license/
                 ======================================================== -->
             </head>
 
@@ -94,72 +81,7 @@ class hotelesView {
                 </header><!-- End Header -->
 
                 <!-- ======= Hero Section ======= -->
-                <section id="hero">
-                    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
-                        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
-
-                        <div class="carousel-inner" role="listbox">
-
-                            <!-- Slide 1 -->
-                            <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
-                                <div class="carousel-container">
-                                    <div class="container">
-                                        <h2 class="animate__animated animate__fadeInDown">Bienvenido a <span>Hotel  </span> Joel</h2>
-                                        <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 2 -->
-                            <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
-                                <div class="carousel-container">
-                                    <div class="container">
-                                        <h2 class="animate__animated animate__fadeInDown">Motomamis Readyss</h2>
-                                        <p class="animate__animated animate__fadeInUp">Okay, motomami
-                                            Pesa mi tatami
-                                            Hit a lo tsunami
-                                            Oh
-                                            Okay, motomami
-                                            Fina, un origami
-                                            Cruda a lo sashimi
-                                            Oh
-                                            A cada copia que ves
-                                            Tú dale tu bendición
-                                            Y yo no quiero competir</p>
-                                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 3 -->
-                            <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
-                                <div class="carousel-container">
-                                    <div class="container">
-                                        <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-                                        <p class="animate__animated animate__fadeInUp">
-                                            Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. 
-                                            Occaecati alias dolorem mollitia ut. Similique ea voluptatem. 
-                                            Esse doloremque accusamus repellendus deleniti vel. 
-                                            Minus et tempore modi architecto.</p>
-                                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-                        </a>
-
-                        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-                            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-                        </a>
-
-                    </div>
-                </section><!-- End Hero -->
 
                 <main id="main">
 
@@ -169,8 +91,8 @@ class hotelesView {
 
                             <div class="row content">
                                 <div class="col-lg-12 text-center">
-                                    <h2>Hoteles Joel</h2>
-                                    <h3>Tenemos disponibles los siguientes hoteles</h3>
+                                    <h2>Habitaciones</h2>
+                                    <h3>Disponibles para reservar</h3>
                                 </div>
 
                             </div>
@@ -183,30 +105,36 @@ class hotelesView {
 
                             <div class="row">
                                 <?php
-                                foreach ($hoteles as $hotel) {
+                                
+                                foreach ($habitaciones as $habitacion) {
                                     ?>
 
                                     <div class="col-md-12 mt-4 mt-md-0 d-flex flex-column justify-content-center align-items-center">
-                                        <h2><?php echo $hotel->getNombre() ?></h2>
+                                        <h2> Habitación</h2>
                                         <div class="col-md-12 mt-4 mt-md-0 d-flex flex-column justify-content-center align-items-center">
 
-                                            <img src="assets/img/hoteles/hotel1.jpg" alt="alt">
+                                            <img src="assets/img/habitaciones/habitacion1.jpg" class="img-fluid rounded" alt="alt">
                                         </div>
                                         <div class="icon-box mt-4" >
 
                                             <div class="d-flex flex-column">
-                                                <h4><?php echo $hotel->getDireccion() . ' ' . $hotel->getCiudad() . ' , ' . $hotel->getPais(); ?></h4>
-                                                <p>
-                                                    <img src="assets/img/hoteles/cama.png" style="width: 25px" alt="alt"/> <?php echo " " . $hotel->getNum_habitaciones(); ?>                                                </p>
-                                                <p>
+                                                <h4>
+                                                    <img src="assets/img/hoteles/cama.png" class="m-2" style="width: 25px" alt="alt"/>                                               
+                                                    <?php echo ucfirst($habitacion->getTipo()) . ' | ' . $habitacion->getPrecio() . ' €'; ?></h4>
 
-                                                    <?php echo $hotel->getDescripcion() ?>
+
+                                                <?php echo $habitacion->getDescripcion() ?>
                                                 </p>
                                                 <div class="text-center">
-                                                    <form class="form" action="<?= $_SERVER['PHP_SELF'] . '?controller=Habitaciones&action=mostrarHabitacionesHotel' ?>" method="POST">
-                                                        <input type="hidden" name="id_hotel" value="<?php echo $hotel->getId() ?>">
-                                                        <input type="hidden" name="nombre_hotel" value="<?php echo $hotel->getNombre() ?>">
-                                                        <button class="btn bg-danger text-light" type="submit">Ver habitaciones</button>
+                                                    <form class="form" action="<?= $_SERVER['PHP_SELF'] . '?controller=&action=' ?>" method="POST">
+                                                        <input type="hidden" name="id_hotel" value="<?php echo $habitacion->getId() ?>">
+                                                        <input type="hidden" name="nombre_hotel" value="<?php echo $habitacion->getNum_habitacion() ?>">
+                                                        <button class="btn bg-danger text-light" type="submit">Reservar</button>
+                                                        <?php 
+                                                        if(isset($_GET['reservar'])) {
+                                                            
+                                                        }
+                                                        ?>
                                                     </form>
                                                 </div>
                                             </div>
@@ -317,10 +245,5 @@ class hotelesView {
 
         </html>
         <?php
-    }
-
-    public
-            function hoteles() {
-        
     }
 }

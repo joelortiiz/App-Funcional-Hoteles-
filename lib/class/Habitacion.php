@@ -9,13 +9,8 @@ class Habitacion {
     private $precio;
     private $descripcion;
     
-    public function __construct($id, $id_hotel, $num_habitacion, $tipo, $precio, $descripcion) {
-        $this->id = $id;
-        $this->id_hotel = $id_hotel;
-        $this->num_habitacion = $num_habitacion;
-        $this->tipo = $tipo;
-        $this->precio = $precio;
-        $this->descripcion = $descripcion;
+    public function __construct() {
+        
     }
     
     public function getId() {
@@ -66,9 +61,7 @@ class Habitacion {
         $this->descripcion = $descripcion;
     }
 
-    public function __destruct() {
-        
-    }
+   
 
 
 }

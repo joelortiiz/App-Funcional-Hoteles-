@@ -1,5 +1,7 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/hoteles/lib/class/Habitacion.php';
+
 class HabitacionModel {
 
     // Obtiene una instancia de PDO para conectarse a la base de datos
@@ -13,10 +15,27 @@ class HabitacionModel {
     }
 
     // Recupera la lista de tareas de la base de datos
-    public function getTareas() {
+    public function getHabitacionesDeHotel($id, $nombre) {
+        try {
         // Ejecuta una consulta para recuperar todas las tareas de la tabla "tareas"
-        $stmt = $this->pdo->prepare('SELECT * FROM tareas');
-        $stmt->execute();
+        $stmt = $this->pdo->prepare('SELECT * FROM habitaciones WHERE id_hotel = ?');
+        $stmt->execute(array($id));
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Habitacion');
+            
+            if ($stmt) {
+                $habijationesObject = $stmt->fetchAll();
+             //   print_r($userObject);
+              //  echo $userObject[0]->getNombre();
+                $this->bd->cerrarBD();
+                return $habijationesObject;
+            } else {
+                throw new Exception('Este hotel no tiene habitaciones');
+                return false;
+            }
+            } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
+        
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
