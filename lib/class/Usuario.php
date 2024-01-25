@@ -1,6 +1,5 @@
 <?php
 
-namespace Hoteles\Clase;
 
 class Usuario {
 
@@ -10,18 +9,13 @@ class Usuario {
     private $fecha_registro;
     private $rol;
 
-    public function __construct($objeto = null) {
-
-        //->bd = new DB();
-        //$this->pdo = $this->bd->getPDO();
-
-        if ($objeto) {
+    public function __construct($id, $nombre, $contrasenia, $fecha_registro, $rol) {
             $this->id = $id;
             $this->nombre = $nombre;
             $this->contrasenia = $contrasenia;
             $this->fecha_registro = $fecha_registro;
             $this->rol = $rol;
-        }
+        
     }
 
     public function getId() {
@@ -64,7 +58,5 @@ class Usuario {
         $this->rol = $rol;
     }
 
-    public function __destruct() {
-        
-    }
+   
 }

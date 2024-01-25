@@ -1,5 +1,8 @@
 <?php
 
+include './lib/models/HotelModel.php';
+include './views/hotelesView.php';
+
  class HotelesController {
     private $model;
     private $view;
@@ -10,14 +13,8 @@
     }
 
     public function mostrarHoteles() {
-        
-         $this->view->mostrarFormulario();
+          $hoteles = $this->model->getHoteles();
+         $this->view->mostrarHoteles($hoteles);
     }
-    // Muestra la lista de tareas
-    public function listar() {
-        // Recupera la lista de tareas del modelo
-        $tareas = $this->model->getTareas();
-        // Muestra la vista de la lista de tareas
-        $this->view->mostrarLista($tareas);
-    }
+   
 }

@@ -46,7 +46,26 @@ include './views/usuariosView.php';
         header('Location:' . $_SERVER['PHP_SELF'] . '?controller=usuarios&action=mostrarErrorForm&error');
     }
       function correctoLogin($user) {
-        $this->createSessionUser($user);
-        header('Location:' . $_SERVER['PHP_SELF'] . '?controller=Hotel&action=listHotels');
+        $this->iniciarSesionUsuario($user);
+        header('Location:' . $_SERVER['PHP_SELF'] . '?controller=Hoteles&action=mostrarHoteles');
     }
+    
+     function iniciarSesionUsuario($user) {
+        session_start();
+        
+         //echo $user ." ------";
+         print_r($user['nombre']);
+        $_SESSION['user'] = $user['nombre'];
+        $this->createSessionCookie($_SESSION['user']);
+    }
+
+    /**
+     * Function to create session expiration cookie for a specific user
+     * 
+     * @param Usuario $user especific Usuario object on session
+     */
+    public function createSessionCookie($user) {
+        setcookie(hash('sha256', $user), 'sessionCookie', time() + 2400, '/');
+    }
+    
 }

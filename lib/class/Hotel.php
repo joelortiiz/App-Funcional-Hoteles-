@@ -1,27 +1,26 @@
 <?php
-
-
 class Hotel {
-    private $id;
-    private $nombre;
-    private $direccion;
-    private $ciudad;
-    private $pais;
-    private $num_habiaciones;
-    private $descripcion;
-    private $foto;
-    
-    public function __construct($id, $nombre, $direccion, $ciudad, $pais, $num_habiaciones, $descripcion, $foto) {
-        $this->id = $id;
-        $this->nombre = $nombre;
-        $this->direccion = $direccion;
-        $this->ciudad = $ciudad;
-        $this->pais = $pais;
-        $this->num_habiaciones = $num_habiaciones;
-        $this->descripcion = $descripcion;
-        $this->foto = $foto;
+
+    /**
+     * Class properties
+     */
+    private $id;                  
+    private $nombre;              
+    private $direccion;           
+    private $ciudad;              
+    private $pais;                
+    private $num_habitaciones;   
+    private $descripcion;        
+    private $foto;                
+   
+    function __construct() {
+        
     }
 
+    
+   
+
+   
     public function getId() {
         return $this->id;
     }
@@ -42,8 +41,8 @@ class Hotel {
         return $this->pais;
     }
 
-    public function getNum_habiaciones() {
-        return $this->num_habiaciones;
+    public function getNum_habitaciones() {
+        return $this->num_habitaciones;
     }
 
     public function getDescripcion() {
@@ -74,8 +73,8 @@ class Hotel {
         $this->pais = $pais;
     }
 
-    public function setNum_habiaciones($num_habiaciones): void {
-        $this->num_habiaciones = $num_habiaciones;
+    public function setNum_habitaciones($num_habitaciones): void {
+        $this->num_habitaciones = $num_habitaciones;
     }
 
     public function setDescripcion($descripcion): void {
@@ -86,8 +85,8 @@ class Hotel {
         $this->foto = $foto;
     }
 
-    public function __destruct() {
-        
+     public function __toString() {
+        return "Hotel: {$this->nombre}\nID: {$this->id}\nDirección: {$this->direccion}\nCiudad: {$this->ciudad}\nPaís: {$this->pais}\nNúmero de habitaciones: {$this->num_habitaciones}\nDescripción: {$this->descripcion}\nFoto: {$this->foto}";
     }
-
-}
+    
+    }

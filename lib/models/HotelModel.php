@@ -3,6 +3,7 @@
 //namespace Hoteles\Models;
 //tendre que usar getPDO() para obtener la conexion a la base de datos
 include_once $_SERVER['DOCUMENT_ROOT'] . '/hoteles/db/DB.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/hoteles/lib/class/Hotel.php';
 
 /* * *******************USUARIOS********************* */
 
@@ -12,130 +13,36 @@ class HotelModel {
 
     private $bd;
     private $pdo;
-    private $id;
-    private $nombre;
-    private $direccion;
-    private $ciudad;
-    private $pais;
-    private $num_habitaciones;
-    private $descripcion;
-    private $foto;
 
-    public function __construct($bd, $pdo, $id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $foto) {
+    public function __construct(/* , $id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $foto */) {
         $this->bd = new DB();
+        $this->pdo = $this->bd->getPDO();
+    }
+
+    public function getHoteles() {
         try {
-                  
-            $this->pdo = $this->bd->getPDO();
-             if ($this->bd->getPDO() == null) {
-                echo "Error en la conexión con la base de datos";
-                exit;
-            }
-        } catch (Exception $ex) {
-            
+       
+        $sql = "SELECT * from hoteles";
+        
+        $hoteles = $this->pdo->prepare($sql);
+        
+        
+        $hoteles->execute();
+        $hoteles->setFetchMode(PDO::FETCH_CLASS, 'Hotel');
+         //foreach ($stmt as $value) {
+         //   $usuario = new Usuario($value['id'], $value['nombre'], $value['contraseña'], $value['fecha_registro'], $value['rol']);
+        //}
+        if ($hoteles) {
+            $userObject = $hoteles->fetch();
+            $this->bd->cerrarBD();
+            return $userObject;
+        } else {
+            throw  new Exception('El usuario no existe en la base de datos');
+            return false;
         }
-        $this->id = $id;
-        $this->nombre = $nombre;
-        $this->direccion = $direccion;
-        $this->ciudad = $ciudad;
-        $this->pais = $pais;
-        $this->num_habitaciones = $num_habitaciones;
-        $this->descripcion = $descripcion;
-        $this->foto = $foto;
-    }
-    public function getBd() {
-        return $this->bd;
-    }
-
-    public function getPdo() {
-        return $this->pdo;
-    }
-
-    public function getId() {
-        return $this->id;
-    }
-
-    public function getNombre() {
-        return $this->nombre;
-    }
-
-    public function getDireccion() {
-        return $this->direccion;
-    }
-
-    public function getCiudad() {
-        return $this->ciudad;
-    }
-
-    public function getPais() {
-        return $this->pais;
-    }
-
-    public function getNum_habitaciones() {
-        return $this->num_habitaciones;
-    }
-
-    public function getDescripcion() {
-        return $this->descripcion;
-    }
-
-    public function getFoto() {
-        return $this->foto;
-    }
-
-    public function setBd($bd): void {
-        $this->bd = $bd;
-    }
-
-    public function setPdo($pdo): void {
-        $this->pdo = $pdo;
-    }
-
-    public function setId($id): void {
-        $this->id = $id;
-    }
-
-    public function setNombre($nombre): void {
-        $this->nombre = $nombre;
-    }
-
-    public function setDireccion($direccion): void {
-        $this->direccion = $direccion;
-    }
-
-    public function setCiudad($ciudad): void {
-        $this->ciudad = $ciudad;
-    }
-
-    public function setPais($pais): void {
-        $this->pais = $pais;
-    }
-
-    public function setNum_habitaciones($num_habitaciones): void {
-        $this->num_habitaciones = $num_habitaciones;
-    }
-
-    public function setDescripcion($descripcion): void {
-        $this->descripcion = $descripcion;
-    }
-
-    public function setFoto($foto): void {
-        $this->foto = $foto;
-    }
-
-    
-        public function getHoteles($nombre) {
-        try {
-            $sql = "SELECT * FROM hoteles";
-            $stmt = $this->db->getPDO()->prepare($sql);
-            $stmt->execute([$nombre]);
-
-            $usuario = $stmt->fetchObject('Usuario');
-            return $usuario; // Devuelve un objeto Usuario
-            //cierro la conexion
-            $this->db->cierroBD();
-        } catch (Exception $ex) {
-            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
-            return null;
+        }
+         catch (Exception $exc) {
+            echo $exc->getMessage();
         }
     }
 }
