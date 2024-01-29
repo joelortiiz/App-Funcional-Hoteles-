@@ -3,8 +3,6 @@
 class hotelesView {
 
     public function mostrarHoteles($hoteles) {
-
-
         foreach ($hoteles as $value) {
             //echo $value ;
         }
@@ -15,11 +13,9 @@ class hotelesView {
             <head>
                 <meta charset="utf-8">
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
                 <title>Sailor Bootstrap Template - Index</title>
                 <meta content="" name="description">
                 <meta content="" name="keywords">
-
                 <!-- Favicons -->
                 <link href="assets/img/favicon.png" rel="icon">
                 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -35,26 +31,15 @@ class hotelesView {
                 <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
                 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
                 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
                 <!-- Template Main CSS File -->
                 <link href="assets/css/style.css" rel="stylesheet">
-
-                <!-- =======================================================
-                * Template Name: Sailor
-                * Updated: Jan 09 2024 with Bootstrap v5.3.2
-                * Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
-                * Author: BootstrapMade.com
-                * License: https://bootstrapmade.com/license/
-                ======================================================== -->
             </head>
-
             <body>
-
                 <!-- ======= Header ======= -->
                 <header id="header" class="fixed-top d-flex align-items-center">
                     <div class="container d-flex align-items-center">
 
-                        <h1 class="logo me-auto"><a href="index.php?controller=usuarios&action=mostrarFormulario">Joel O.</a></h1>
+                        <h1 class="logo me-auto"><a href="index.php?controller=usuarios&action=mostrarFormulario"><?php echo $_SESSION['user']; ?></a></h1>
                         <!-- Uncomment below if you prefer to use an image logo -->
                         <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -190,7 +175,8 @@ class hotelesView {
                                         <h2><?php echo $hotel->getNombre() ?></h2>
                                         <div class="col-md-12 mt-4 mt-md-0 d-flex flex-column justify-content-center align-items-center">
 
-                                            <img src="assets/img/hoteles/hotel1.jpg" alt="alt">
+                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($hotel->getFoto()) ?>" style="width: 500px" alt="Foto del hotel">
+
                                         </div>
                                         <div class="icon-box mt-4" >
 

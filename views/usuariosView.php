@@ -21,7 +21,7 @@ class usuariosView {
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <form class="card-body p-5 text-center" method="POST" action="./index.php?controller=usuarios&action=comprobarLogin" >
 
-            <h3 class="mb-5">Sign in</h3>
+            <h3 class="mb-5">Entrar</h3>
             <?php
             if (isset($_GET["error"])) {
                     echo "<p class='text-danger'>Datos incorrectos</p>";

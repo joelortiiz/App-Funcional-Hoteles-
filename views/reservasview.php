@@ -96,19 +96,13 @@ class reservasView {
                                     <?php
                                     if ($resultadoReserva == 'fallida') {
                                         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                                        echo 'Reserva no disponible. Seleccione otra fecha.';
-                                        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                                        echo '</div>';
-                                    }
-                                    if (isset($_GET['error2'])) {
-                                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                                        echo 'La fecha de salida no puede ser más pequeña que la de entrada.';
+                                        echo 'Reserva no disponible o errónea. Cambia la fecha.';
                                         echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
                                         echo '</div>';
                                     }
                                     if (isset($_GET['success'])) {
                                         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-                                        echo 'Reserva realizada con éxito.';
+                                        echo 'La Reserva ha sido realizada con éxito.';
                                         echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
                                         echo '</div>';
                                     }
@@ -154,7 +148,7 @@ class reservasView {
 
                             </div>
                     </section><!-- End About Section -->
-                    <!-- ======= Services Section ======= -->
+                    <!--Services Section-->
                     <section id="services" class="services">
                         <div class="container">
 
@@ -187,9 +181,8 @@ class reservasView {
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" href="#"><?php echo "ID Reserva: " . $reserva['id']; ?></a>
-                                                    <a class="dropdown-item" href="#"><?php echo "ID Reserva: " . $reserva['id_usuario']; ?></a>
-                                                    <a class="dropdown-item" href="#"><?php echo "ID Reserva: " . $reserva['id_habitacion']; ?></a>
-
+                                                    <a class="dropdown-item" href="#"><?php echo "ID Usuario: " . $reserva['id_usuario']; ?></a>
+                                                    <a class="dropdown-item" href="#"><?php echo "ID Habitación: " . $reserva['id_habitacion']; ?></a>
                                                 </div>
                                             </div>
                                         </td>
