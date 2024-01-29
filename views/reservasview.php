@@ -1,8 +1,8 @@
 <?php
 
-class habitacionesView {
+class reservasView {
 
-    function mostrarHabitaciones($habitaciones) {
+    function mostrarReservas($reservas, $reservasUser, $resultadoReserva) {
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -91,59 +91,130 @@ class habitacionesView {
 
                             <div class="row content">
                                 <div class="col-lg-12 text-center">
-                                    <h2>Habitaciones</h2>
-                                    <h3>Disponibles para reservar</h3>
+                                    <h2>Zona de Reserva</h2>
+
+                                    <?php
+                                    if ($resultadoReserva == 'fallida') {
+                                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                                        echo 'Reserva no disponible. Seleccione otra fecha.';
+                                        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                                        echo '</div>';
+                                    }
+                                    if (isset($_GET['error2'])) {
+                                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                                        echo 'La fecha de salida no puede ser más pequeña que la de entrada.';
+                                        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                                        echo '</div>';
+                                    }
+                                    if (isset($_GET['success'])) {
+                                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                                        echo 'Reserva realizada con éxito.';
+                                        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                                        echo '</div>';
+                                    }
+                                    ?>
+                                </div>
+                                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                    <h3>Detalles de la reserva</h3>
+                                    <div class="text-center text-danger m-4">
+
+                                        <?php
+                                        foreach ($reservas as $value) {
+                                            echo '<p>Tipo de habitación:' . $value['tipo'] . '</p>';
+                                            echo '<p>Precio Final: ' . $value['precio'] . '€</p>';
+                                            echo '<p>Nº Habitaciones: ' . $value['num_habitacion'] . '</p>';
+                                            echo '<p>Desc: ' . $value['descripcion'] . '</p>';
+                                            ?>
+
+                                        </div>
+                                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                            <h3>Confirma tu reserva</h3>
+                                            <form action="index.php?controller=Reservas&action=comprobarReserva" class="mt-4" method="post">
+                                                <?php ?>
+                                                <input type="hidden"  name="id_usuario" value="<?php echo $_COOKIE['id'] ?>" >
+                                                <input type="hidden"  name="id_hotel" value="<?php echo $value['id_hotel'] ?>" >
+                                                <input type="hidden"  name="id_habitacion" value="<?php echo $value['id'] ?>" >
+                                                <div class="mb-3">
+                                                    <label for="fecha_entrada" class="form-label">Fecha de Entrada:</label>
+                                                    <input type="date" id="fecha_entrada" name="fecha_entrada" class="form-control" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="fecha_salida" class="form-label">Fecha de Salida:</label>
+                                                    <input type="date" id="fecha_salida" name="fecha_salida" class="form-control" required>
+                                                </div>
+                                                <!-- Botón de envío con clase de Bootstrap -->
+                                                <button type="submit" class="btn btn-danger">Enviar Reserva</button>
+                                            </form>
+
+                                        </div> 
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
 
                             </div>
-
-                        </div>
                     </section><!-- End About Section -->
                     <!-- ======= Services Section ======= -->
                     <section id="services" class="services">
                         <div class="container">
 
-                            <div class="row">
+                            <div class="row p-4 mb-4">
                                 <?php
-                                foreach ($habitaciones as $habitacion) {
+                                if (!$reservasUser == null) {
+                                    ?>
+                                    <div class="col-md-12 mt-4 mt-md-0 d-flex flex-column justify-content-center align-items-center">
+                                        <h2> Tus Reservas, <?php echo ucfirst($_SESSION['user']); ?></h2>
+                                    </div>
+                                    <?php
+                                    echo "<table border='1' class='text-center m-2'>
+                                                <tr>
+                                                  <th>Detalles</th>
+                                                  <th>Fecha Entrada</th>
+                                                  <th>Fecha Salida</th>
+                                                    </tr>";
+                                    foreach ($reservasUser as $reserva) {
+
+                                        // Cabecera de la tabla
+                                        ?>
+
+                                        <?php
+                                        echo "<tr>";
+                                        ?>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle m-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Mostrar
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#"><?php echo "ID Reserva: " . $reserva['id']; ?></a>
+                                                    <a class="dropdown-item" href="#"><?php echo "ID Reserva: " . $reserva['id_usuario']; ?></a>
+                                                    <a class="dropdown-item" href="#"><?php echo "ID Reserva: " . $reserva['id_habitacion']; ?></a>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <?php
+                                        echo "<td>" . $reserva['fecha_entrada'] . "</td>";
+                                        echo "<td>" . $reserva['fecha_salida'] . "</td>";
+                                        echo "</tr>";
+                                    }
+
+//                                       Cerrar la tabla
+                                    echo "</table>";
+                                    ?>
+                                    <?php
+                                } else {
                                     ?>
 
                                     <div class="col-md-12 mt-4 mt-md-0 d-flex flex-column justify-content-center align-items-center">
-                                        <h2> Habitación</h2>
+                                        <h2> No tienes Reservas</h2>
                                         <div class="col-md-12 mt-4 mt-md-0 d-flex flex-column justify-content-center align-items-center">
 
-                                            <img src="assets/img/habitaciones/habitacion1.jpg" class="img-fluid rounded" alt="alt">
-                                        </div>
-                                        <div class="icon-box mt-4" >
-
-                                            <div class="d-flex flex-column">
-                                                <h4>
-                                                    <img src="assets/img/hoteles/cama.png" class="m-2" style="width: 25px" alt="alt"/>                                               
-                                                    <?php echo ucfirst($habitacion->getTipo()) . ' | ' . $habitacion->getPrecio() . ' €'; ?></h4>
-
-
-                                                <?php echo $habitacion->getDescripcion() ?>
-                                                </p>
-                                                <div class="text-center">
-                                                    <form class="form" action="<?= $_SERVER['PHP_SELF'] . '?controller=Reservas&action=mostrarReservas&idHotel=' . $habitacion->getId_hotel() .'&idHabitacion=' . $habitacion->getId(); ?>" method="POST">
-                                                        <input type="hidden" name="id_hotel" value="<?php echo $habitacion->getId() ?>">
-                                                        <input type="hidden" name="nombre_hotel" value="<?php echo $habitacion->getNum_habitacion() ?>">
-
-                                                        <button class="btn bg-danger text-light" type="submit">Reservar</button>
-                                                        <?php
-                                                        //<input type="date" name="nombre_hotel" value="<?php echo $habitacion->getNum_habitacion() ">
-
-                                                        ?>
-                                                    </form>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <?php
                                 }
                                 ?>
-
-
                             </div>
 
                         </div>
@@ -153,11 +224,10 @@ class habitacionesView {
                 </main><!-- End #main -->
 
                 <!--  Footer  -->
-                <footer id="footer">
+                <footer id="footer" class="mt-4">
                     <div class="footer-top">
                         <div class="container">
                             <div class="row">
-
                                 <div class="col-lg-3 col-md-6">
                                     <div class="footer-info">
                                         <h3>Sailor</h3>
@@ -227,19 +297,11 @@ class habitacionesView {
 
                 <!-- End Footer -->
 
-                <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-                <!-- Vendor JS Files -->
-                <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-                <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-                <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-                <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-                <script src="assets/vendor/php-email-form/validate.js"></script>
-
-                <!-- Template Main JS File -->
                 <script src="assets/js/main.js"></script>
-
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             </body>
 
         </html>

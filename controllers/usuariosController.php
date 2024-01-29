@@ -32,9 +32,10 @@ class UsuariosController {
             $passPost = $_POST['password'];
 
             $user = $this->model->comprobarUsuarioDB($userPost, $passPost);
-
+            $_SESSION['id'] = $user->getId();
+            
             if ($user != false) {
-                //echo 'login correcto';
+                
 
                 $this->correctoLogin($user);
             } else {
@@ -55,9 +56,7 @@ class UsuariosController {
     function iniciarSesionUsuario($user) {
         session_start();
 
-        //echo $user ." ------";
-        print_r($user['nombre']);
-        $_SESSION['user'] = $user['nombre'];
+        $_SESSION['user'] = $user->getNombre();
         $this->createSessionCookie($_SESSION['user']);
     }
 

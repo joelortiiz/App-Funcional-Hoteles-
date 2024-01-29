@@ -3,6 +3,8 @@
 //namespace Hoteles\Models;
 //tendre que usar getPDO() para obtener la conexion a la base de datos
 include_once $_SERVER['DOCUMENT_ROOT'] . '/hoteles/db/DB.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/hoteles/lib/class/Usuario.php';
+
 //require_once $_SERVER['DOCUMENT_ROOT'] . '/hoteles/lib/class/Usuario.php';
 
 //use Hoteles\Clase\Usuario;
@@ -43,13 +45,21 @@ class UsuarioModel {
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->execute(array($user, $password));
-           // $stmt->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
-            //foreach ($stmt as $value) {
-            //   $usuario = new Usuario($value['id'], $value['nombre'], $value['contraseña'], $value['fecha_registro'], $value['rol']);
-            //}
-            if ($stmt) {
-                $userObject = $stmt->fetch();
+            //$stmt->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
+            
+            if ($stmt->rowCount()>0) {
+                foreach ($stmt as $user) {
+                    $userObject = new Usuario($user['id'], $user['nombre'], $user['contraseña'], $user['fecha_registro'], $user['rol']);
+                }
+                
+                //$userObject = $stmt->fetchAll();
+                
+                $_SESSION['id'] = $userObject->getId();
+                //He tenido problemas para almacenar la id del usuario en la sesión así que utilizo una cookie como último recurso.
+                setcookie("id", $userObject->getId(), time() + 20 * 2400);
+
                 $this->bd->cerrarBD();
+                
                 return $userObject;
             } else {
                 throw new Exception('El usuario no existe en la base de datos');

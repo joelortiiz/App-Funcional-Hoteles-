@@ -20,8 +20,6 @@ include './views/hotelesView.php';
         
             $hoteles = $this->model->getHoteles();
          $this->view->mostrarHoteles($hoteles);
-        
-          
     }
    
 }

@@ -54,13 +54,13 @@ class hotelesView {
                 <header id="header" class="fixed-top d-flex align-items-center">
                     <div class="container d-flex align-items-center">
 
-                        <h1 class="logo me-auto"><a href="index.html">Joel O.</a></h1>
+                        <h1 class="logo me-auto"><a href="index.php?controller=usuarios&action=mostrarFormulario">Joel O.</a></h1>
                         <!-- Uncomment below if you prefer to use an image logo -->
                         <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
                         <nav id="navbar" class="navbar">
                             <ul>
-                                <li><a href="index.html" class="active">Home</a></li>
+                                <li><a href="index.php?controller=Hoteles&action=mostrarHoteles" class="active">Home</a></li>
 
                                 <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
                                     <ul>
