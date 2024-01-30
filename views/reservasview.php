@@ -85,12 +85,12 @@ class reservasView {
                 <main id="main">
 
                     <!-- ======= About Section ======= -->
-                    <section id="about" class="about">
-                        <div class="container">
+                    <section id="about" class="about ">
+                        <div class="container ">
 
-                            <div class="row content">
+                            <div class="row content ">
                                 <div class="col-lg-12 text-center">
-                                    <h2>Zona de Reserva</h2>
+                                    <h2 class="p-4">Zona de Reserva</h2>
 
                                     <?php
                                     if ($resultadoReserva == 'fallida') {
@@ -112,6 +112,7 @@ class reservasView {
                                     <div class="text-center text-danger m-4">
 
                                         <?php
+                                        //Recorremos los valores de la reserva que vamos a hacer.
                                         foreach ($reservas as $value) {
                                             echo '<p>Tipo de habitación:' . $value['tipo'] . '</p>';
                                             echo '<p>Precio Final: ' . $value['precio'] . '€</p>';
