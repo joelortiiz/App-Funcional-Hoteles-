@@ -3,6 +3,8 @@
 include './lib/models/UsuarioModel.php';
 include './views/usuariosView.php';
 
+// Definición de la clase UsuariosController
+
 class UsuariosController {
 
     private $model;
