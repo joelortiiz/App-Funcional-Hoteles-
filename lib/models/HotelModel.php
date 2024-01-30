@@ -23,20 +23,16 @@ class HotelModel {
         try {
 
             $sql = "SELECT * from hoteles";
-
             $hoteles = $this->pdo->prepare($sql);
-
-           
-
             $hoteles->execute();
             $hoteles->setFetchMode(PDO::FETCH_CLASS, 'Hotel');
             
             if ($hoteles) {
-                $userObject = $hoteles->fetchAll();
+                $hotelesObject = $hoteles->fetchAll();
              //   print_r($userObject);
               //  echo $userObject[0]->getNombre();
                 $this->bd->cerrarBD();
-                return $userObject;
+                return $hotelesObject;
             } else {
                 throw new Exception('El usuario no existe en la base de datos');
                 return false;

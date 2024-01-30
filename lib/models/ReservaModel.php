@@ -7,7 +7,7 @@ class ReservaModel {
     private $bd;
     private $pdo;
 
-    // Constructor de la clase
+    // Constrctor de la clase
     public function __construct() {
         try {
             // Intenta crear una instancia de la clase BD y obtener la conexión PDO
@@ -19,7 +19,7 @@ class ReservaModel {
         }
     }
 
-    // Método para obtener reservas según el id de hotel y el id de habitación
+    // Método para recibir la habitacion que quiere reservar con el id de hotel y el id de habitación
     public function getReserva($id_hotel, $id_habitacion) {
         try {
             // Consulta SQL para selecionar todas las reservas de una habitación en un hotel
@@ -38,7 +38,7 @@ class ReservaModel {
             // Lanzar una excepción en caso de error (sin efecto en el flujo actual)
             throw new Exception('Hay un error con los datos recibidos.');
         } catch (Exception $e) {
-            // En caso de error, capturar la excepción y mostrar el mensaje de error
+            // En caso de error capturar la excepción y mostrar el mensaje de error
             echo $e->getMessage();
         }
     }
@@ -128,6 +128,9 @@ class ReservaModel {
 
             // Redirigir a la página de visualización de reservas después de la inserción
             header('Location: index.php?controller=Reservas&action=mostrarReservas&idHotel=' . $id_hotel . '&idHabitacion=' . $id_habitacion . '&success');
+        
+            throw new Exception("Reserva incorrecta");
+
         } catch (Exception $e) {
             // En caso de error, capturar la excepción y mostrar el mensaje de error
             echo $e->getMessage();

@@ -27,18 +27,19 @@ class UsuariosController {
     public function comprobarLogin() {
 
         if (isset($_POST['usuario']) && isset($_POST['password'])) {
-
+            //Guardamos los datos recibidos por el formulario.
             $userPost = $_POST['usuario'];
             $passPost = $_POST['password'];
-
+            //comprobamos que el usuario y contraseña sean correctos
             $user = $this->model->comprobarUsuarioDB($userPost, $passPost);
-            $_SESSION['id'] = $user->getId();
-            
+            //Si es correcto:
             if ($user != false) {
-                
-
+                $_SESSION['id'] = $user->getId();
+                //Llamamos a la función que se encarga de redirigir al usuario a ver los hoteles.
                 $this->correctoLogin($user);
+                //Si el usuario no es correcto
             } else {
+                //función que hace que evita al cliente intruso o avisa que los datos no son correctos.
                 $this->errorLogin();
             }
         }
@@ -62,22 +63,26 @@ class UsuariosController {
 
     function cerrarSesionUsuario() {
         session_start();
-//Destruimos las sesiones
+        //Destruimos las sesiones
 
         $_SESSION = array();
         session_destroy();
 
-//Redirigimos al inicio con las sesiones cerradas
+        //Redirigimos al inicio con todas las sesiones destruidas
         header('Location: ./index.php?controller=usuarios&action=mostrarErrorForm&logout'
-);
+        );
     }
 
-    /**
-     * Function to create session expiration cookie for a specific user
-     * 
-     * @param Usuario $user especific Usuario object on session
-     */
+    //Creamos cookies
     public function createSessionCookie($user) {
+        if (!isset($_COOKIE["conexion"])) {
+            $fecha_actual = date("d/m H:i");
+            setcookie("conexion", $fecha_actual, time() + 3600 * 24, "/");
+        } else {
+            setcookie("conexion", $fecha_actual, time() - 60, "/");
+            $fecha_actual = date("d/m H:i");
+            setcookie("conexion", $fecha_actual, time() + 3600 * 24, "/");
+        }
         setcookie(hash('sha256', $user), 'sessionCookie', time() + 2400, '/');
     }
 }

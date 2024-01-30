@@ -20,7 +20,7 @@ class habitacionesView {
                 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
                 <!-- Google Fonts -->
-                <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
                 <!-- Vendor CSS Files -->
                 <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -32,7 +32,6 @@ class habitacionesView {
                 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
                 <link href="assets/css/style.css" rel="stylesheet">
-                ======================================================== -->
             </head>
 
             <body>
@@ -118,22 +117,16 @@ class habitacionesView {
 
                                             <div class="d-flex flex-column">
                                                 <h4>
-                                                    <img src="assets/img/hoteles/cama.png" class="m-2" style="width: 25px" alt="alt"/>                                               
+                                                    <img src="assets/img/hoteles/cama.png" class="m-2" style="width: 25px" alt="alt">                                               
                                                     <?php echo ucfirst($habitacion->getTipo()) . ' | ' . $habitacion->getPrecio() . ' €'; ?></h4>
 
-
-                                                <?php echo $habitacion->getDescripcion() ?>
-                                                </p>
+                                                    <?php echo $habitacion->getDescripcion() ?>
+                                               
                                                 <div class="text-center">
-                                                    <form class="form" action="<?= $_SERVER['PHP_SELF'] . '?controller=Reservas&action=mostrarReservas&idHotel=' . $habitacion->getId_hotel() .'&idHabitacion=' . $habitacion->getId(); ?>" method="POST">
+                                                    <form class="form" action="<?= $_SERVER['PHP_SELF'] . '?controller=Reservas&action=mostrarReservas&idHotel=' . $habitacion->getId_hotel() . '&idHabitacion=' . $habitacion->getId(); ?>" method="POST">
                                                         <input type="hidden" name="id_hotel" value="<?php echo $habitacion->getId() ?>">
                                                         <input type="hidden" name="nombre_hotel" value="<?php echo $habitacion->getNum_habitacion() ?>">
-
                                                         <button class="btn bg-danger text-light" type="submit">Reservar</button>
-                                                        <?php
-                                                        //<input type="date" name="nombre_hotel" value="<?php echo $habitacion->getNum_habitacion() ">
-
-                                                        ?>
                                                     </form>
                                                 </div>
                                             </div>
@@ -202,7 +195,7 @@ class habitacionesView {
                                 <div class="col-lg-4 col-md-6 footer-newsletter">
                                     <h4>Nuestro Boletín</h4>
                                     <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                                    <form action="" method="post">
+                                    <form method="post">
                                         <input type="email" name="email"><input type="submit" value="Suscribirse">
                                     </form>
                                 </div>
@@ -215,16 +208,8 @@ class habitacionesView {
                         <div class="copyright">
                             &copy; Derechos de autor <strong><span>Sailor</span></strong>. Todos los derechos reservados
                         </div>
-                        <div class="credits">
-                            <!-- Todos los enlaces en el pie de página deben permanecer intactos. -->
-                            <!-- Puedes eliminar los enlaces solo si compraste la versión pro. -->
-                            <!-- Información de licencia: https://bootstrapmade.com/license/ -->
-                            <!-- Compra la versión pro con formulario de contacto PHP/AJAX funcional: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
-                            Diseñado por <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                        </div>
                     </div>
                 </footer>
-
                 <!-- End Footer -->
 
                 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

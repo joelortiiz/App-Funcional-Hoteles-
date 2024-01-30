@@ -8,7 +8,7 @@ class usuariosView {
    
         ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <title>Mi aplicación de hoteles</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -27,21 +27,21 @@ class usuariosView {
                     echo "<p class='text-danger'>Datos incorrectos</p>";
                 }
                 if (isset($_GET["logout"])) {
-                    echo "<p class='text-warning'>Debes iniciar sesión !!</p>";
+                    echo "<p class='text-success'>Sesión cerrada correctamente </p>";
                 }
                 ?>
             <div class="form-outline mb-4">
-              <input type="text" id="typeEmailX-2" name="usuario" class="form-control form-control-lg" />
+              <input type="text" id="typeEmailX-2" name="usuario" class="form-control form-control-lg" >
               <label class="form-label" for="typeEmailX-2">Email</label>
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg" />
+              <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg" >
               <label class="form-label" for="typePasswordX-2">Password</label>
             </div>
 
             <div class="form-check d-flex justify-content-start mb-4">
-              <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" >
               <label class="form-check-label" for="form1Example3">  Remember password </label>
             </div>
 

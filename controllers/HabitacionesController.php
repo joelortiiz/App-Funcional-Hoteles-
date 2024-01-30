@@ -19,8 +19,7 @@ class HabitacionesController {
             header('Location: ./index.php');
         }
         if (isset($_POST['id_hotel']) && isset($_POST['nombre_hotel'])) {
-
-            //echo $_POST["nombre_hotel"];
+            
             $id = $_POST['id_hotel'];
             $nombre = $_POST['nombre_hotel'];
 

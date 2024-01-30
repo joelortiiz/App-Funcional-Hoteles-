@@ -23,9 +23,9 @@ class HabitacionModel {
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Habitacion');
             
             if ($stmt) {
+                //Guardamos TODAS las filas recibidas por la consulta.
                 $habijationesObject = $stmt->fetchAll();
-             //   print_r($userObject);
-              //  echo $userObject[0]->getNombre();
+                
                 $this->bd->cerrarBD();
                 return $habijationesObject;
             } else {

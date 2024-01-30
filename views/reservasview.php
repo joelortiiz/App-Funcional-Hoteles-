@@ -20,7 +20,7 @@ class reservasView {
                 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
                 <!-- Google Fonts -->
-                <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
                 <!-- Vendor CSS Files -->
                 <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -32,7 +32,6 @@ class reservasView {
                 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
                 <link href="assets/css/style.css" rel="stylesheet">
-                ======================================================== -->
             </head>
 
             <body>
@@ -130,13 +129,13 @@ class reservasView {
                                                 <input type="hidden"  name="id_habitacion" value="<?php echo $value['id'] ?>" >
                                                 <div class="mb-3">
                                                     <label for="fecha_entrada" class="form-label">Fecha de Entrada:</label>
-                                                    <input type="date" id="fecha_entrada" name="fecha_entrada" class="form-control" required>
+                                                    <input type="date" id="fecha_entrada" name="fecha_entrada" class="form-control" >
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="fecha_salida" class="form-label">Fecha de Salida:</label>
-                                                    <input type="date" id="fecha_salida" name="fecha_salida" class="form-control" required>
+                                                    <input type="date" id="fecha_salida" name="fecha_salida" class="form-control" >
                                                 </div>
-                                                <!-- Botón de envío con clase de Bootstrap -->
+
                                                 <button type="submit" class="btn btn-danger">Enviar Reserva</button>
                                             </form>
 
@@ -147,6 +146,7 @@ class reservasView {
                                 </div>
 
                             </div>
+                        </div>
                     </section><!-- End About Section -->
                     <!--Services Section-->
                     <section id="services" class="services">
@@ -160,14 +160,13 @@ class reservasView {
                                         <h2> Tus Reservas, <?php echo ucfirst($_SESSION['user']); ?></h2>
                                     </div>
                                     <?php
-                                    echo "<table border='1' class='text-center m-2'>
+                                    echo "<table class='text-center m-2'>
                                                 <tr>
                                                   <th>Detalles</th>
                                                   <th>Fecha Entrada</th>
                                                   <th>Fecha Salida</th>
                                                     </tr>";
                                     foreach ($reservasUser as $reserva) {
-
                                         // Cabecera de la tabla
                                         ?>
 
@@ -265,7 +264,7 @@ class reservasView {
                                 <div class="col-lg-4 col-md-6 footer-newsletter">
                                     <h4>Nuestro Boletín</h4>
                                     <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                                    <form action="" method="post">
+                                    <form method="post">
                                         <input type="email" name="email"><input type="submit" value="Suscribirse">
                                     </form>
                                 </div>
@@ -278,13 +277,7 @@ class reservasView {
                         <div class="copyright">
                             &copy; Derechos de autor <strong><span>Sailor</span></strong>. Todos los derechos reservados
                         </div>
-                        <div class="credits">
-                            <!-- Todos los enlaces en el pie de página deben permanecer intactos. -->
-                            <!-- Puedes eliminar los enlaces solo si compraste la versión pro. -->
-                            <!-- Información de licencia: https://bootstrapmade.com/license/ -->
-                            <!-- Compra la versión pro con formulario de contacto PHP/AJAX funcional: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
-                            Diseñado por <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                        </div>
+
                     </div>
                 </footer>
 
